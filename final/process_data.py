@@ -71,7 +71,63 @@ def process_data():
     df.to_csv('avg_diff_data.csv')
 
 
+# find the avg acceptance rate of all schools in the US per year
+def us_avg():
+    data = pd.read_csv("combined_data.csv")
+
+    avg = {}
+    for year in range(2001, 2022):
+        total = 0
+        count = 0
+        for index, row in data.iterrows():
+            current_ar = row[str(year)] if not pd.isna(row[str(year)]) else None
+
+            if current_ar is not None:
+                total += current_ar
+                count += 1
+
+        avg[year] = total / count
+
+        print(f"Finished Averaging {year}")
+
+    df = pd.DataFrame.from_dict(avg, orient='index')
+    df.to_csv('us_avg_data.csv')
+
+
+# find the average change in acceptance rate per year of the top 20 schools from 2002 to 2021
+def top20_avg_diff():
+    data = pd.read_csv("top20_schools.csv")
+
+    avg = {}
+    for year in range(2002, 2022):
+        for index, row in data.iterrows():
+            current_ar = row[str(year)] if not pd.isna(row[str(year)]) else None
+            prev_ar = row[str(year - 1)] if not pd.isna(row[str(year - 1)]) else None
+            diff = current_ar - prev_ar if current_ar is not None and prev_ar is not None else None
+
+            if diff is None:
+                continue
+
+            if year not in avg:
+                avg[year] = []
+
+            avg[year].append(diff)
+
+        avg[year] = sum(avg[year]) / len(avg[year])
+
+        print(f"Finished Averaging T20 {year}")
+
+    df = pd.DataFrame.from_dict(avg, orient='index')
+    df.to_csv('top20_avg_diff_data.csv')
+
+
 if __name__ == '__main__':
     # combine_data()
 
-    process_data()
+    # process_data()
+
+    # us_avg()
+
+    top20_avg_diff()
+
+    pass
