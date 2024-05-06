@@ -89,7 +89,7 @@ ani = animation.FuncAnimation(
     repeat_delay=1000,
 )
 
-plt.show()
-
 # save the animation
 ani.save("acceptance_rate.gif", writer="pillow", fps=1)
+
+plt.show()
