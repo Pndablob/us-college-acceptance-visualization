@@ -16,7 +16,7 @@ plt.subplots_adjust(left=0.1, bottom=0.1, right=1, top=0.9)
 geo_data.plot(ax=ax)
 
 # create slider
-ax_slider = plt.axes([0.1, 0.01, 0.8, 0.03])
+ax_slider = plt.axes([0.1, 0.1, 0.676, 0.03])
 slider = Slider(
     ax_slider,
     "Year",
@@ -45,8 +45,8 @@ def update_slider(val):
 
     # set the title on the top of the map
     ax.set_title(
-        f"Average Change in Acceptance Rates for Universities from the {target_year - 1} to {target_year} Academic Year",
-        fontsize=15,
+        f"Average Change in Acceptance Rates of Universities in Each State from the {target_year - 1} to {target_year} Academic Year",
+        fontsize=16,
         pad=20,
     )
 
