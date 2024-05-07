@@ -6,9 +6,9 @@ import matplotlib as mpl
 
 import pandas as pd
 
-data = pd.read_csv("combined_data.csv")
+data = pd.read_csv("combined_acceptance_data.csv")
 geo_data = gpd.read_file('usa.geojson')
-avg_diff = pd.read_csv("avg_diff_data.csv")
+avg_diff = pd.read_csv("avg_acceptance_diff_data.csv")
 
 # show the geo data
 fig, ax = plt.subplots()
